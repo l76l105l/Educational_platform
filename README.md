@@ -4,6 +4,13 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Development server
 
+To start a local json server where all the questions for tests are stored, run:
+
+```bash
+cd src
+json-server db.json
+```
+
 To start a local development server, run:
 
 ```bash
