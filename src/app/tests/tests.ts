@@ -11,7 +11,7 @@ import { QuestionInterface } from '../question-interface';
 })
 export class Tests {
 
-  readonly baseUrl = 'http://localhost:3000/questions';
+  readonly baseUrl = 'https://api.jsonbin.io/v3/b/68a7516ed0ea881f405f7a57/latest';
   questionList:QuestionInterface[] = [];
 
   nextQuestionVisible = signal(false);
@@ -19,13 +19,21 @@ export class Tests {
   index:number=0;
   
   async getQuestionList(): Promise<QuestionInterface[]>{
-    const data = await fetch(this.baseUrl);
-    return (await data.json()) ?? [];
+    const response = await fetch(this.baseUrl, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await response.json();
+    console.log(json.record)
+    return json.record.questions ?? []; 
   }
 
   constructor(){
     this.getQuestionList().then((questionList) => {
+      console.log("questionList",questionList)
       this.questionList = questionList;
+      console.log(this.questionList)
     })
   }
 
@@ -35,7 +43,7 @@ export class Tests {
       this.index+=1;
     }
     else{
-      
+      this.index=0;
     }
   }
   
