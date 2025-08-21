@@ -1,0 +1,61 @@
+<!-- Header -->
+<header
+  class="flex flex-wrap gap-6 items-center justify-between bg-white shadow-md rounded-3xl p-6 mx-8 my-6 border border-gray-200"
+>
+  <!-- Logo -->
+  <h2 class="text-2xl font-bold text-blue-600">*Logo</h2>
+
+  <!-- Navigation -->
+  <nav>
+    <ul class="flex gap-6 text-lg font-medium text-gray-700">
+      <li>
+        <a
+          class="hover:text-blue-500 transition-colors"
+          [routerLink]="['/tests']"
+          >Tests</a
+        >
+      </li>
+      <li>
+        <a
+          class="hover:text-blue-500 transition-colors"
+          [routerLink]="['/profile']"
+          >Profile</a
+        >
+      </li>
+      <li>
+        <a
+          class="hover:text-blue-500 transition-colors"
+          [routerLink]="['/tariff']"
+          >Tariff</a
+        >
+      </li>
+      <li>
+        <a
+          class="hover:text-blue-500 transition-colors"
+          [routerLink]="['/achievements']"
+          >Achievements</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Main content -->
+<main class="px-8">
+  <h1 class="text-4xl font-bold text-center text-gray-800 mt-10 mb-4">
+    Main page
+  </h1>
+  <p class="text-2xl text-center text-gray-600 mb-8">
+    This is the main page where all the primary content will be stored
+  </p>
+
+  <!-- Example card for main content -->
+  <section
+    class="bg-white shadow-lg rounded-3xl p-8 mx-auto max-w-4xl border border-gray-200"
+  >
+    <p class="text-gray-700 text-lg">
+      Content block example — you can place your main dashboard, news, or
+      overview here.
+    </p>
+  </section>
+</main>

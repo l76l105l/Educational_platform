@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="question">
+    {{question()?.id}}) {{question()?.question}}
+    </div>
+    <form [formGroup]="answerForm">
+      <ul class="options">
+        @for(option of question()?.options ; track $index){
+          <li>
+            <label>
+              <input type="radio" name="answer" formControlName="answer" [value]="option">{{option}}
+            </label>
+          </li> 
+        }
+      </ul>
+      <div class="h-5 m-2">
+        @if(showAnswer()){
+          @if(answerForm.controls.answer.value === question().options[question().correctIndex]){
+            <small class="text-green-500 font-bold">Correct!👍</small>
+          }
+          @else {
+            <small class="text-red-500 font-bold">Wrong! Correct Answer: {{question().options[question().correctIndex]}}</small>
+          }
+        }
+      </div>
+      <button [disabled]="answerForm.invalid" (click)="onSubmit()" class="submit-btn" type="submit">Submit</button>
+    </form>
+  </div>
