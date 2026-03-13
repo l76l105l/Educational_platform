@@ -1,0 +1,82 @@
+<div class="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/40 dark:shadow-none border border-slate-200/60 dark:border-slate-700/60 p-6 md:p-10 w-full transition-colors duration-300">
+  <!-- Question Topic / ID -->
+  <div class="flex items-start gap-4 mb-8">
+    <span class="flex items-center justify-center w-8 h-8 flex-shrink-0 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-400 font-bold text-sm shadow-sm border border-blue-200 dark:border-blue-800/50 mt-1">
+      {{question()?.id}}
+    </span>
+    <h3 class="text-xl md:text-2xl font-bold text-slate-800 dark:text-slate-100 leading-snug">
+      {{question()?.question}}
+    </h3>
+  </div>
+
+  <form [formGroup]="answerForm" class="space-y-8">
+    
+    <!-- Options List -->
+    <div class="space-y-3">
+      @for(option of question()?.options ; track $index){
+        <label class="relative flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all duration-200" 
+          [class.border-blue-500]="answerForm.controls.answer.value === option" 
+          [class.bg-blue-50]="answerForm.controls.answer.value === option"
+          [class.dark:border-blue-500]="answerForm.controls.answer.value === option"
+          [class.dark:bg-blue-900]="answerForm.controls.answer.value === option"
+          [class.border-slate-200]="answerForm.controls.answer.value !== option"
+          [class.dark:border-slate-700]="answerForm.controls.answer.value !== option"
+          [class.hover:border-blue-300]="answerForm.controls.answer.value !== option"
+          [class.dark:hover:border-blue-500]="answerForm.controls.answer.value !== option"
+          [class.opacity-60]="answerForm.disabled && answerForm.controls.answer.value !== option"
+        >
+          <input type="radio" class="w-5 h-5 text-blue-600 bg-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-slate-800 focus:ring-2 disabled:opacity-50 transition-colors" name="answer" formControlName="answer" [value]="option">
+          <span class="ml-4 text-base font-medium text-slate-700 dark:text-slate-200 transition-colors"
+                [class.text-blue-700]="answerForm.controls.answer.value === option"
+                [class.dark:text-blue-300]="answerForm.controls.answer.value === option">
+            {{option}}
+          </span>
+        </label>
+      }
+    </div>
+
+    <!-- Action Area -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-6 pt-6 border-t border-slate-100 dark:border-slate-700/60">
+      
+      <!-- Feedback Message -->
+      <div class="flex-1 min-h-[3rem] flex items-center justify-start w-full transition-all">
+        @if(showAnswer()){
+          @if(answerForm.controls.answer.value === correctAnswerText()){
+            <div class="animate-fade-in flex items-center gap-3 px-5 py-3 w-full rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50">
+              <div class="bg-green-100 dark:bg-green-800/50 rounded-full p-1 text-green-600 dark:text-green-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-green-800 dark:text-green-300 font-semibold">Correct! Well done.</span>
+            </div>
+          }
+          @else {
+             <div class="animate-fade-in flex items-start gap-3 px-5 py-3 w-full rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/50">
+              <div class="bg-red-100 dark:bg-red-800/50 rounded-full p-1 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+              </div>
+              <div>
+                <span class="block text-red-800 dark:text-red-300 font-bold mb-0.5">Incorrect.</span>
+                <span class="text-sm text-red-700 dark:text-red-400/90">The correct answer is: <strong class="font-bold border-b border-red-300 dark:border-red-700/60 pb-0.5 ml-1">{{ correctAnswerText() }}</strong></span>
+              </div>
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Submit Button -->
+      <!-- We change type to button here unless it needs to submit an NgForm, but the old one was type="submit". Let's keep type="submit" just in case, but prevent default if angular handles it. Actually old was type="submit", so we keep it exactly as it was. -->
+      <button 
+        [disabled]="answerForm.invalid || showAnswer()" 
+        (click)="onSubmit()" 
+        type="submit"
+        class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-500 disabled:bg-slate-200 dark:disabled:bg-slate-800/80 text-white disabled:text-slate-400 dark:disabled:text-slate-500 font-bold rounded-xl transition-all duration-200 shadow-lg shadow-slate-900/10 dark:shadow-blue-900/20 hover:shadow-xl disabled:shadow-none focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 whitespace-nowrap">
+        Check Answer
+      </button>
+
+    </div>
+  </form>
+</div>
+<style>
+  .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+</style>

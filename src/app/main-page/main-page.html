@@ -1,61 +1,149 @@
-<!-- Header -->
-<header
-  class="flex flex-wrap gap-6 items-center justify-between bg-white shadow-md rounded-3xl p-6 mx-8 my-6 border border-gray-200"
->
-  <!-- Logo -->
-  <h2 class="text-2xl font-bold text-blue-600">*Logo</h2>
+<div class="min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300 flex flex-col">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-md">I</div>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">IELTS<span class="text-blue-600">Prep</span></h2>
+        </div>
 
-  <!-- Navigation -->
-  <nav>
-    <ul class="flex gap-6 text-lg font-medium text-gray-700">
-      <li>
-        <a
-          class="hover:text-blue-500 transition-colors"
-          [routerLink]="['/tests']"
-          >Tests</a
-        >
-      </li>
-      <li>
-        <a
-          class="hover:text-blue-500 transition-colors"
-          [routerLink]="['/profile']"
-          >Profile</a
-        >
-      </li>
-      <li>
-        <a
-          class="hover:text-blue-500 transition-colors"
-          [routerLink]="['/tariff']"
-          >Tariff</a
-        >
-      </li>
-      <li>
-        <a
-          class="hover:text-blue-500 transition-colors"
-          [routerLink]="['/achievements']"
-          >Achievements</a
-        >
-      </li>
-    </ul>
-  </nav>
-</header>
+        <!-- Navigation Desktop -->
+        <nav class="hidden md:flex flex-1 justify-center">
+          <ul class="flex space-x-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+            <li><a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" [routerLink]="['/tests']">Practice Tests</a></li>
+            <li><a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" [routerLink]="['/profile']">My Profile</a></li>
+            <li><a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" [routerLink]="['/tariff']">Pricing</a></li>
+            <li><a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" [routerLink]="['/achievements']">Achievements</a></li>
+          </ul>
+        </nav>
 
-<!-- Main content -->
-<main class="px-8">
-  <h1 class="text-4xl font-bold text-center text-gray-800 mt-10 mb-4">
-    Main page
-  </h1>
-  <p class="text-2xl text-center text-gray-600 mb-8">
-    This is the main page where all the primary content will be stored
-  </p>
+        <!-- Right Side: Dark Mode Toggle -->
+        <div class="flex items-center space-x-4">
+          <button class="theme-toggle-btn p-2 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle Dark Mode">
+            <!-- Sun Icon (shows in dark mode) -->
+            <svg class="w-5 h-5 hidden dark:block text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+               <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 4.22a1 1 0 011.415 0l.708.707a1 1 0 01-1.414 1.415l-.708-.708a1 1 0 010-1.414zm-8.44 0a1 1 0 00-1.414 0l-.708.708a1 1 0 101.415 1.415l.707-.708a1 1 0 000-1.415zM12 10a2 2 0 11-4 0 2 2 0 014 0zm-2 5a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm4.95-3a1 1 0 011 1h1a1 1 0 110-2h-1a1 1 0 01-1 1zm-9.9 0a1 1 0 011-1H3a1 1 0 100 2h1a1 1 0 011-1zm8.44 4.22a1 1 0 010 1.414l-.707.708a1 1 0 11-1.415-1.415l.708-.707a1 1 0 011.414 0zM5.78 15.636a1 1 0 010 1.414l-.707.707a1 1 0 11-1.415-1.415l.707-.707a1 1 0 011.415 0z" clip-rule="evenodd" />
+            </svg>
+            <!-- Moon Icon (shows in light mode) -->
+            <svg class="w-5 h-5 block dark:hidden text-slate-700" fill="currentColor" viewBox="0 0 20 20">
+               <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- Example card for main content -->
-  <section
-    class="bg-white shadow-lg rounded-3xl p-8 mx-auto max-w-4xl border border-gray-200"
-  >
-    <p class="text-gray-700 text-lg">
-      Content block example — you can place your main dashboard, news, or
-      overview here.
-    </p>
-  </section>
-</main>
+  <!-- Main Hero Section -->
+  <main class="flex-1 w-full flex flex-col items-center justify-center p-6 lg:p-12 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute top-10 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-900/20 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-3xl opacity-70"></div>
+    <div class="absolute bottom-10 right-10 w-72 h-72 bg-orange-300/20 dark:bg-orange-900/20 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-3xl opacity-70"></div>
+
+    <div class="relative max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
+      
+      <!-- Text Content -->
+      <div class="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+        <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-sm font-semibold tracking-wide border border-blue-100 dark:border-blue-500/20 shadow-sm">
+          <span class="flex w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 mr-2.5"></span>
+          New IELTS Mock Tests Available
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Achieve your <br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">target band</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
+          Prepare for the IELTS exam with our adaptive online tests. Track your progress, identify weaknesses, and improve your score with realistic practice.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2">
+          <a [routerLink]="['/tests']" class="inline-flex justify-center items-center px-8 py-3.5 text-base font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 transition-all duration-200 transform hover:-translate-y-0.5">
+            Start Practice Test
+          </a>
+          <a [routerLink]="['/tariff']" class="inline-flex justify-center items-center px-8 py-3.5 text-base font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-xl shadow-sm transition-all duration-200 hover:border-slate-300 dark:hover:border-slate-600">
+            View Pricing
+          </a>
+        </div>
+        
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-8 pt-8 w-full border-t border-slate-200 dark:border-slate-800/60 mt-4">
+          <div>
+            <p class="text-3xl font-bold text-slate-900 dark:text-white">50+</p>
+            <p class="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">Mock Tests</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-slate-900 dark:text-white">10k</p>
+            <p class="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">Active Users</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-slate-900 dark:text-white">4.8</p>
+            <p class="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-1">Avg Rating</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Illustration / Feature Card (Right side) -->
+      <div class="relative w-full flex items-center justify-center lg:justify-end py-10">
+        <!-- Dashboard Mockup -->
+        <div class="w-full max-w-md bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-700/60 overflow-hidden transform lg:-rotate-2 hover:rotate-0 transition-transform duration-500">
+          <div class="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700/60 px-4 py-3 flex items-center justify-between">
+            <div class="flex gap-2">
+              <div class="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700"></div>
+              <div class="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700"></div>
+              <div class="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-700"></div>
+            </div>
+            <div class="text-xs font-medium text-slate-400">Student Dashboard</div>
+          </div>
+          <div class="p-6 sm:p-8">
+            <h3 class="font-semibold text-lg text-slate-800 dark:text-slate-100 mb-6">Recent Performance</h3>
+            
+            <div class="space-y-5">
+              <div class="flex flex-col gap-2">
+                <div class="flex justify-between text-sm">
+                  <span class="font-medium text-slate-600 dark:text-slate-300">Listening</span>
+                  <span class="font-bold text-slate-900 dark:text-white">Band 8.0</span>
+                </div>
+                <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
+                  <div class="bg-green-500 h-full rounded-full" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <div class="flex justify-between text-sm">
+                  <span class="font-medium text-slate-600 dark:text-slate-300">Reading</span>
+                  <span class="font-bold text-slate-900 dark:text-white">Band 7.5</span>
+                </div>
+                <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
+                  <div class="bg-blue-500 h-full rounded-full" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <div class="flex justify-between text-sm">
+                  <span class="font-medium text-slate-600 dark:text-slate-300">Writing</span>
+                  <span class="font-bold text-slate-900 dark:text-white">Band 6.5</span>
+                </div>
+                <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
+                  <div class="bg-indigo-500 h-full rounded-full" style="width: 70%"></div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-8 p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/10 rounded-xl border border-orange-100 dark:border-orange-800/30 flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-800/40 flex flex-shrink-0 items-center justify-center text-orange-600 dark:text-orange-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-slate-100">Pro Tip</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">Focus on Academic Writing Task 1 to boost your overall score.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+</div>

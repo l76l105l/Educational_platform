@@ -2,12 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AIMOEXTechnicalProject</title>
+  <title>IELTS Platform Redesign</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    // Theme toggle logic without touching Angular TS
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check local storage or system preference
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      // Global click listener for theme toggle buttons
+      document.addEventListener('click', (e) => {
+        const toggleBtn = e.target.closest('.theme-toggle-btn');
+        if (toggleBtn) {
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.theme = 'light';
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.theme = 'dark';
+          }
+        }
+      });
+    });
+  </script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-900 dark:text-slate-100 font-inter antialiased">
   <app-root></app-root>
 </body>
 </html>

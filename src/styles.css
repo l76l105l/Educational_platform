@@ -1,3 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+/* Add Tailwind directives */
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-inter);
+  }
+}
+
+/* Ensure images cannot be dragged and text selection is standard */
+img {
+  -webkit-user-drag: none;
+}

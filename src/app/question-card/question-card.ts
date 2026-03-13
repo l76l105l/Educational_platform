@@ -1,4 +1,4 @@
-import { Component, input, inject, signal,effect, output } from '@angular/core';
+import { Component, input, inject, signal, effect, output, computed } from '@angular/core';
 import { QuestionInterface } from '../question-interface';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { AnswerInterface } from '../answer-interface';
@@ -20,6 +20,14 @@ export class QuestionCard {
   })
   showAnswer = signal(false);
 
+  correctAnswerText = computed(() => {
+    const q = this.question();
+    if (q && q.options && q.options[q.correctIndex]) {
+      return q.options[q.correctIndex];
+    }
+    return '';
+  });
+
   constructor(){
     effect(() => {
       const q = this.question();
@@ -35,15 +43,14 @@ export class QuestionCard {
     this.output.emit()
     this.answerForm.controls.answer.disable();
     this.showAnswer.set(true);
+    const q = this.question();
     this.answers.push({
-      questionId : this.question().id,
-      questionName: this.question().question,
+      questionId : q.id,
+      questionName: q.question,
       userAnswer: this.answerForm.controls.answer.value!,
-      correctAnswer: this.question().options[this.question().correctIndex],
-      isCorrect: this.answerForm.controls.answer.value === this.question().options[this.question().correctIndex]
+      correctAnswer: q.options[q.correctIndex],
+      isCorrect: this.answerForm.controls.answer.value === q.options[q.correctIndex]
     })
     localStorage.setItem('answers', JSON.stringify(this.answers))
   }
-  
-
 }

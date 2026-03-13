@@ -1,53 +1,107 @@
-<main class="min-h-screen bg-white py-12 px-6">
-      <a
-    class="absolute top-4 left-4 bg-white shadow-md hover:bg-blue-200 transition rounded-md w-10 h-10 flex items-center justify-center"
-    [routerLink]="['/']"
-  >
-    <img src="left-arrow.svg" alt="Back" class="w-5 h-5" />
-  </a>
+<main class="min-h-screen relative bg-slate-50 dark:bg-slate-900 transition-colors duration-300 py-16 px-4 sm:px-6 lg:px-8">
+  
+  <!-- Header Controls -->
+  <div class="absolute top-4 left-4 flex gap-4 z-10">
+    <!-- Back button -->
+    <a class="inline-flex items-center justify-center w-10 h-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors focus:ring-2 focus:ring-blue-500" [routerLink]="['/']" aria-label="Go back">
+      <svg class="w-5 h-5 text-slate-600 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+    </a>
+  </div>
 
-    <h1 class="text-4xl font-bold text-center text-gray-800 mt-10 mb-4">Tariff Plans</h1>
+  <!-- Main Content -->
+  <div class="max-w-6xl mx-auto">
+    
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Master IELTS on <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Your Terms</span></h1>
+      <p class="text-lg text-slate-600 dark:text-slate-400">Choose the perfect plan to boost your band score. No hidden fees, cancel anytime.</p>
+    </div>
 
     <!-- Plans container -->
-    <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+    <div class="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto items-end">
       
       <!-- Free Plan -->
-      <div class="flex flex-col border rounded-2xl p-6">
-        <h2 class="text-xl font-semibold text-blue-600 mb-2">Free</h2>
-        <p class="text-3xl font-bold text-gray-900 mb-4">$0<span class="text-base text-gray-500">/mo</span></p>
-        <ul class="space-y-2 text-gray-700 text-sm flex-1">
-          <li>✔ 20 test questions</li>
-          <li>✔ Basic progress tracking</li>
-          <li>✘ Monitoring</li>
+      <div class="flex flex-col bg-white dark:bg-slate-800/80 rounded-3xl p-8 border border-slate-200 dark:border-slate-700/80 shadow-sm hover:shadow-lg transition-shadow duration-300">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Basic Starter</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 h-10">Essential tools to get standard practice.</p>
+        <div class="flex items-baseline gap-1 mb-8">
+          <span class="text-4xl font-extrabold text-slate-900 dark:text-white">$0</span>
+          <span class="text-slate-500 dark:text-slate-400 font-medium">/mo</span>
+        </div>
+        
+        <ul class="space-y-4 text-slate-600 dark:text-slate-300 mb-8 flex-1">
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            20 practice questions
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Basic progress tracking
+          </li>
+          <li class="flex items-center gap-3 opacity-50">
+            <svg class="w-5 h-5 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            Performance monitoring
+          </li>
         </ul>
-        <button class="mt-6 w-full bg-blue-100 hover:bg-blue-200 text-blue-700 py-2 rounded-lg text-sm">Choose</button>
+        <button class="w-full py-3 px-6 rounded-xl font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-transparent dark:border-slate-600">Current Plan</button>
       </div>
   
-      <!-- Standard Plan -->
-      <div class="flex flex-col border-2 border-blue-400 rounded-2xl p-6">
-        <h2 class="text-xl font-semibold text-blue-600 mb-2">Standard</h2>
-        <p class="text-3xl font-bold text-gray-900 mb-4">$9<span class="text-base text-gray-500">/mo</span></p>
-        <ul class="space-y-2 text-gray-700 text-sm flex-1">
-          <li>✔ Unlimited questions</li>
-          <li>✔ Progress tracking</li>
-          <li>✔ Monitoring & analytics</li>
+      <!-- Standard Plan (Recommended) -->
+      <div class="flex flex-col bg-white dark:bg-slate-800 rounded-3xl p-8 border-2 border-blue-500 dark:border-blue-500 shadow-xl shadow-blue-500/10 dark:shadow-blue-900/20 relative transform md:-translate-y-4">
+        <!-- Badge -->
+        <div class="absolute -top-4 left-0 right-0 flex justify-center">
+          <span class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold uppercase tracking-wider py-1 px-4 rounded-full shadow-sm">Recommended</span>
+        </div>
+
+        <h2 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-2 mt-2">Pro Scholar</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 h-10">Perfect for dedicated students aiming for Band 7+.</p>
+        <div class="flex items-baseline gap-1 mb-8">
+          <span class="text-5xl font-extrabold text-slate-900 dark:text-white">$9</span>
+          <span class="text-slate-500 dark:text-slate-400 font-medium">/mo</span>
+        </div>
+        
+        <ul class="space-y-4 text-slate-600 dark:text-slate-300 mb-8 flex-1">
+          <li class="flex items-center gap-3 font-medium text-slate-900 dark:text-slate-100">
+            <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Unlimited test questions
+          </li>
+          <li class="flex items-center gap-3 font-medium text-slate-900 dark:text-slate-100">
+            <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Advanced progress tracking
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            In-depth performance analytics
+          </li>
         </ul>
-        <button class="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-sm">Choose</button>
+        <button class="w-full py-3.5 px-6 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 transition-all transform hover:-translate-y-0.5">Upgrade to Pro</button>
       </div>
   
       <!-- Premium Plan -->
-      <div class="flex flex-col border rounded-2xl p-6">
-        <h2 class="text-xl font-semibold text-blue-600 mb-2">Premium</h2>
-        <p class="text-3xl font-bold text-gray-900 mb-4">$19<span class="text-base text-gray-500">/mo</span></p>
-        <ul class="space-y-2 text-gray-700 text-sm flex-1">
-          <li>✔ Unlimited questions</li>
-          <li>✔ Full progress tracking</li>
-          <li>✔ Advanced monitoring</li>
-          <li>✔ All achievements</li>
+      <div class="flex flex-col bg-white dark:bg-slate-800/80 rounded-3xl p-8 border border-slate-200 dark:border-slate-700/80 shadow-sm hover:shadow-lg transition-shadow duration-300">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Elite Master</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 h-10">Full access plus personal tutor insights.</p>
+        <div class="flex items-baseline gap-1 mb-8">
+          <span class="text-4xl font-extrabold text-slate-900 dark:text-white">$19</span>
+          <span class="text-slate-500 dark:text-slate-400 font-medium">/mo</span>
+        </div>
+        
+        <ul class="space-y-4 text-slate-600 dark:text-slate-300 mb-8 flex-1">
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Everything in Pro Scholar
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            AI Writing & Speaking evaluation
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Unlock all exclusive achievements
+          </li>
         </ul>
-        <button class="mt-6 w-full bg-blue-100 hover:bg-blue-200 text-blue-700 py-2 rounded-lg text-sm">Choose</button>
+        <button class="w-full py-3 px-6 rounded-xl font-semibold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800/50 border border-blue-200 dark:border-blue-800/50 transition-colors">Go Elite</button>
       </div>
   
     </div>
-  </main>
-  
+  </div>
+</main>

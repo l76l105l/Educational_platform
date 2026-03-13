@@ -1,27 +1,60 @@
-<main class="relative h-screen flex justify-center items-center bg-gray-50">
-  <!-- Back button -->
-  <a
-    class="absolute top-4 left-4 bg-white shadow-md hover:bg-blue-200 transition rounded-md w-10 h-10 flex items-center justify-center"
-    [routerLink]="['/']"
-  >
-    <img src="left-arrow.svg" alt="Back" class="w-5 h-5" />
-  </a>
+<main class="min-h-screen relative flex justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+  <!-- Top Controls -->
+  <div class="absolute top-4 left-4 right-4 flex justify-between items-center z-10 max-w-7xl mx-auto w-full px-4">
+    <!-- Back button -->
+    <a class="inline-flex items-center justify-center w-10 h-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors focus:ring-2 focus:ring-blue-500" [routerLink]="['/']" aria-label="Go back">
+      <svg class="w-5 h-5 text-slate-600 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+    </a>
 
-  <!-- Content -->
-  <div class="flex items-stretch gap-4">
-    <!-- Question card -->
-    <app-question-card
-      (output)="nextQuestionVisible.set(true)"
-      [question]="questionList[index]"
-    ></app-question-card>
-
-    <!-- Next button -->
-    <button
-      class="p-2 bg-white shadow-md w-12 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-blue-100 hover:cursor-pointer transition disabled:hidden"
-      [disabled]="!nextQuestionVisible()"
-      (click)="nextQuestion()"
-    >
-      <img src="right-arrow.svg" alt="Next" class="w-5 h-5" />
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle-btn w-10 h-10 inline-flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Toggle Dark Mode">
+      <svg class="w-5 h-5 hidden dark:block text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+         <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 4.22a1 1 0 011.415 0l.708.707a1 1 0 01-1.414 1.415l-.708-.708a1 1 0 010-1.414zm-8.44 0a1 1 0 00-1.414 0l-.708.708a1 1 0 101.415 1.415l.707-.708a1 1 0 000-1.415zM12 10a2 2 0 11-4 0 2 2 0 014 0zm-2 5a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm4.95-3a1 1 0 011 1h1a1 1 0 110-2h-1a1 1 0 01-1 1zm-9.9 0a1 1 0 011-1H3a1 1 0 100 2h1a1 1 0 011-1zm8.44 4.22a1 1 0 010 1.414l-.707.708a1 1 0 11-1.415-1.415l.708-.707a1 1 0 011.414 0zM5.78 15.636a1 1 0 010 1.414l-.707.707a1 1 0 11-1.415-1.415l.707-.707a1 1 0 011.415 0z" clip-rule="evenodd" />
+      </svg>
+      <svg class="w-5 h-5 block dark:hidden text-slate-700" fill="currentColor" viewBox="0 0 20 20">
+         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+      </svg>
     </button>
+  </div>
+
+  <!-- Content Area -->
+  <div class="w-full max-w-4xl mt-16 md:mt-10 flex flex-col items-center">
+    <!-- Progress Indicator -->
+    <div class="mb-8 w-full px-2">
+      <div class="flex justify-between items-end mb-2">
+        <span class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Question {{index + 1}} <span class="text-slate-400 dark:text-slate-600 font-normal">of {{questionList.length}}</span></span>
+      </div>
+      <div class="w-full bg-slate-200 dark:bg-slate-700/60 rounded-full h-1.5 overflow-hidden">
+        <div class="bg-blue-600 h-full rounded-full transition-all duration-500" [style.width.%]="questionList.length ? ((index + 1) / questionList.length) * 100 : 0"></div>
+      </div>
+    </div>
+
+    <!-- Interface Wrapper -->
+    <div class="flex flex-col md:flex-row items-stretch gap-6 w-full">
+      
+      <!-- Question Card Container -->
+      <div class="flex-1 w-full relative">
+        <app-question-card
+          (output)="nextQuestionVisible.set(true)"
+          [question]="questionList[index]"
+          class="block w-full"
+        ></app-question-card>
+      </div>
+
+      <!-- Next Button Area -->
+      <div class="flex flex-col justify-end pb-2 md:justify-end">
+        <button
+          class="w-full md:w-16 h-14 md:h-16 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 dark:disabled:bg-slate-800 disabled:text-slate-400 dark:disabled:text-slate-500 text-white shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 disabled:shadow-none flex items-center justify-center rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 group"
+          [disabled]="!nextQuestionVisible()"
+          (click)="nextQuestion()"
+          aria-label="Next Question"
+        >
+          <span class="md:hidden font-semibold mr-2">Next Question</span>
+          <svg class="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </main>
